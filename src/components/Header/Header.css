@@ -1,0 +1,91 @@
+body{
+    background-color: #e7dbb5;
+    color: #ee791a;
+}
+header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.navbar{
+    display: flex;
+    margin: 12px auto;
+    flex-direction: row-reverse;
+    z-index: 10;
+    position: relative;
+    width: 90vw;
+}
+.navUl{
+    display: flex;
+    margin-left: auto;
+    font-family: "Baloo Bhai 2";
+    font-weight: bolder;
+    font-size: 1.5rem;
+    display: none;
+}
+.navBtn{
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    padding-bottom: 0;
+}
+.navBtn:hover{
+    border-bottom: 4px solid #ee791a;
+    transition-duration: 200ms;
+}
+.navBtnOnlyMobile{
+    font-size: 2rem;
+    margin-right: auto;
+    padding-top: 0.5rem;
+}
+.navulOnlyMobile{
+    background-color: #e7dbb5;
+    width: 90vw;
+    height: 100vh;
+    top: 0;
+    left: -100%;
+    position: fixed;
+    z-index: 2;
+    transition: 400ms;
+}
+.navUlMobile{
+    display: flex;
+    flex-direction: column;
+    font-family: "Baloo Bhai 2";
+    font-weight: bolder;
+    font-size: 1.5rem;
+    margin-top: 15vh;
+    align-items: center;
+}
+.navBtnMobile{
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    padding-bottom: 0;
+}
+
+
+
+
+.footer{
+    background-color: #e7dbb5;
+}
+
+
+
+@media (min-width: 640px) { 
+    .navBtnOnlyMobile{
+        display: none;
+    }
+    .navbar{
+        flex-direction: row;
+    }
+    .navUl{
+        display: flex;
+        font-size: 1.3rem;
+    }
+
+ }
+ @media (min-width: 768px) { 
+    .navUl{
+        font-size: 1.5rem;
+    }
+}

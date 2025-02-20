@@ -1,0 +1,17 @@
+:root{
+  --primary-color: #e7dbb5;
+  --secondary-color: #ee791a;
+  --black-color: black;
+  --white-color: white;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--secondary-color);
+  border-radius: 23px;
+}

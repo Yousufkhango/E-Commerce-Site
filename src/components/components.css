@@ -1,0 +1,20 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    color: var(--black-color);
+    border-radius: 25px;
+    width: 350px;
+}
+
+.card>h2 {
+    font-size: 1.5rem;
+    margin: 10px;
+}
+
+.card img {
+    border-radius: 10px;
+    max-height: 200px;
+    width: 350px;
+    object-fit: cover;
+    object-position: center center;
+}
