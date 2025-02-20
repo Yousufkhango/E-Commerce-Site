@@ -16,6 +16,10 @@ export default function Post() {
     const isAuthor = post && userData ? post.userId === userData.$id : false;
 
     useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
+      
+    useEffect(() => {
         if (slug) {
             appwriteService.getPost(slug).then((post) => {
                 if (post) setPost(post);

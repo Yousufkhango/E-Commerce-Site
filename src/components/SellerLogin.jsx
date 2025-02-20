@@ -20,7 +20,7 @@ export default function SellerLogin() {
         if (seller) {
            if(seller) dispatch(sellerAuthLogin({userData : seller}));
             if (data.email === seller.email && data.password === seller.password) {
-                navigate("/add-post") // navigate to the seller dashboard
+                navigate("/")
             }else{
                 setError("Invalid email or password")  
             }

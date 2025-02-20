@@ -19,6 +19,7 @@ export default function PostForm({ post }) {
     const userData = useSelector((state) => state.auth.userData);
 
     const submit = async (data) => {
+        console.log(data);
         if (post) {
             const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
 
@@ -36,10 +37,15 @@ export default function PostForm({ post }) {
             }
         } else {
             const file = await appwriteService.uploadFile(data.image[0]);
+            const file02 = await appwriteService.uploadFile(data.image02[0]);
 
-            if (file) {
+            if (file && file02) {
                 const fileId = file.$id;
                 data.featuredImage = fileId;
+                
+                const fileId02 = file02.$id;
+                data.featuredImage02 = fileId02;
+
                 const dbPost = await appwriteService.createPost({ ...data, userId: userData.$id });
 
                 if (dbPost) {
@@ -96,6 +102,13 @@ export default function PostForm({ post }) {
                     className="mb-4"
                     accept="image/png, image/jpg, image/jpeg, image/gif"
                     {...register("image", { required: !post })}
+                />
+                <Input
+                    label="Featured Image 02 :"
+                    type="file"
+                    className="mb-4"
+                    accept="image/png, image/jpg, image/jpeg, image/gif"
+                    {...register("image02", { required: false })}
                 />
                 {post && (
                     <div className="w-full mb-4">

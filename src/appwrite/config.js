@@ -22,8 +22,8 @@ export class Service{
         try {
             return await this.databases.getDocument(
                 conf.appwriteDatabaseId,
-                conf.appwriteSellerCollectionId,
-                userId,
+                conf.appwriteCollectionId2,
+                userId
                 
             )
         } catch (error) {
@@ -32,14 +32,11 @@ export class Service{
         }
     }
 
-    async getSellers(userId){
+    async getSellers(){
         try {
             return await this.databases.listDocuments(
                 conf.appwriteDatabaseId,
-                conf.appwriteCollectionId,
-                [
-                    Query.equal(userId, userId)
-                ]
+                conf.appwriteCollectionId2,
             );
         } catch (error) {
             console.log("Appwrite serive :: getSellers :: error", error);
@@ -53,7 +50,7 @@ export class Service{
         try {
             return await this.databases.createDocument(
                 conf.appwriteDatabaseId,
-                conf.appwriteCollectionId,
+                conf.appwriteCollectionId1,
                 slug,
                 {
                     title,
@@ -72,7 +69,7 @@ export class Service{
         try {
             return await this.databases.updateDocument(
                 conf.appwriteDatabaseId,
-                conf.appwriteCollectionId,
+                conf.appwriteCollectionId1,
                 slug,
                 {
                     title,
@@ -91,7 +88,7 @@ export class Service{
         try {
             await this.databases.deleteDocument(
                 conf.appwriteDatabaseId,
-                conf.appwriteCollectionId,
+                conf.appwriteCollectionId1,
                 slug
             
             )
@@ -106,7 +103,7 @@ export class Service{
         try {
             return await this.databases.getDocument(
                 conf.appwriteDatabaseId,
-                conf.appwriteCollectionId,
+                conf.appwriteCollectionId1,
                 slug
             
             )
@@ -120,7 +117,7 @@ export class Service{
         try {
             return await this.databases.listDocuments(
                 conf.appwriteDatabaseId,
-                conf.appwriteCollectionId,
+                conf.appwriteCollectionId1,
                 queries,
                 
 

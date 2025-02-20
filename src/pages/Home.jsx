@@ -1,17 +1,21 @@
-import React, {useEffect, useState} from 'react'
+import React, {use, useEffect, useState} from 'react'
 import appwriteService from "../appwrite/config";
 import {Container, PostCard} from '../components'
 import './page.css'
 
 function Home() {
     const [posts, setPosts] = useState([])
-
+    
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
     useEffect(() => {
         appwriteService.getPosts().then((posts) => {
             if (posts) {
                 setPosts(posts.documents)
             }
         })
+        // console.log("this is post response", appwriteService.getPosts())
     }, [])
   
     if (posts.length === 0) {
