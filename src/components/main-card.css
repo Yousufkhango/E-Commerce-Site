@@ -1,0 +1,82 @@
+.main-card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+.main-card .card-img {
+    /* border: 2px solid red; */
+    width: 100%;
+    height: 45vw;
+    padding: 16px;
+
+}
+.main-card .card-img img{
+    object-fit: cover;
+    object-position: center center;
+    aspect-ratio: 1/1;
+}
+
+.main-card .text{
+    padding: 10px;
+    margin: auto 0px;
+}
+.main-card .title{
+    margin: auto 0px;
+}
+.main-card .title h2{
+    font-size: 1rem;
+    max-height: 70px;
+    overflow: hidden;
+}
+.price-sec{
+    margin-top: 6px;
+}
+.discounted-price{
+    font-size: 1.2rem;
+    font-weight: 500;
+    display: flex;
+}
+.discounted-price span:first-child{
+    font-size: 0.7em;
+}
+.old-price-sec{
+    /* border: 1px solid red; */
+    display: flex;
+    font-size: 0.9rem;
+    justify-content: space-between;
+}
+.old-price-sec .old-price{
+    text-decoration: line-through;
+}
+.disc{
+    background-color: #f0faf7;
+    color: #0bb07e;
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+}
+.disc .price{
+    display: flex;
+}
+.disc .price span:first-child{
+    font-size: 0.7em;
+}
+
+
+/* Post Container Css */
+.post-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 70vh;
+    background-color: #f1f3f6;
+}
+
+.post-container>div {
+    margin: 5px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    max-height: 360px;
+}

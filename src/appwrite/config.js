@@ -1,30 +1,30 @@
 import conf from '../conf/conf.js';
 import { Client, ID, Databases, Storage, Query } from "appwrite";
 
-export class Service{
+export class Service {
     client = new Client();
     databases;
     bucket;
-    
-    constructor(){
+
+    constructor() {
         this.client
-        .setEndpoint(conf.appwriteUrl)
-        .setProject(conf.appwriteProjectId);
+            .setEndpoint(conf.appwriteUrl)
+            .setProject(conf.appwriteProjectId);
         this.databases = new Databases(this.client);
         this.bucket = new Storage(this.client);
     }
 
 
-    
+
     // Seller Login Logout AddItem
-    
-    async getSeller(userId){
+
+    async getSeller(userId) {
         try {
             return await this.databases.getDocument(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId2,
                 userId
-                
+
             )
         } catch (error) {
             console.log("Appwrite serive :: getSeller :: error", error);
@@ -32,7 +32,7 @@ export class Service{
         }
     }
 
-    async getSellers(){
+    async getSellers() {
         try {
             return await this.databases.listDocuments(
                 conf.appwriteDatabaseId,
@@ -43,21 +43,26 @@ export class Service{
             return false
         }
     }
-    
+
     // Seller Login Logout AddItem
 
-    async createPost({title, slug, content, featuredImage, status, userId}){
+    async createItem({ productName, description, category, price, discount, images_5, images_1, images_2, images_3, images_4 }) {
         try {
             return await this.databases.createDocument(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId1,
-                slug,
+                ID.unique(),
                 {
-                    title,
-                    content,
-                    featuredImage,
-                    status,
-                    userId,
+                    productName,
+                    description,
+                    category,
+                    price,
+                    discount,
+                    images_5,
+                    images_1,
+                    images_2,
+                    images_3,
+                    images_4
                 }
             )
         } catch (error) {
@@ -65,7 +70,7 @@ export class Service{
         }
     }
 
-    async updatePost(slug, {title, content, featuredImage, status}){
+    async updatePost(slug, { title, content, featuredImage, status }) {
         try {
             return await this.databases.updateDocument(
                 conf.appwriteDatabaseId,
@@ -84,13 +89,13 @@ export class Service{
         }
     }
 
-    async deletePost(slug){
+    async deleteItem(slug) {
         try {
             await this.databases.deleteDocument(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId1,
                 slug
-            
+
             )
             return true
         } catch (error) {
@@ -99,13 +104,13 @@ export class Service{
         }
     }
 
-    async getPost(slug){
+    async getPost(slug) {
         try {
             return await this.databases.getDocument(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId1,
                 slug
-            
+
             )
         } catch (error) {
             console.log("Appwrite serive :: getPost :: error", error);
@@ -113,14 +118,25 @@ export class Service{
         }
     }
 
-    async getPosts(queries = [Query.equal("status", "active")]){
+    async getPosts() {
+        try {
+            return await this.databases.listDocuments(
+                conf.appwriteDatabaseId,
+                conf.appwriteCollectionId1,
+
+            )
+        } catch (error) {
+            console.log("Appwrite serive :: getPosts :: error", error);
+            return false
+        }
+    }
+
+    async getItem(queries) {
         try {
             return await this.databases.listDocuments(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId1,
                 queries,
-                
-
             )
         } catch (error) {
             console.log("Appwrite serive :: getPosts :: error", error);
@@ -130,7 +146,7 @@ export class Service{
 
     // file upload service
 
-    async uploadFile(file){
+    async uploadFile(file) {
         try {
             return await this.bucket.createFile(
                 conf.appwriteBucketId,
@@ -143,7 +159,7 @@ export class Service{
         }
     }
 
-    async deleteFile(fileId){
+    async deleteFile(fileId) {
         try {
             await this.bucket.deleteFile(
                 conf.appwriteBucketId,
@@ -156,8 +172,14 @@ export class Service{
         }
     }
 
-    getFilePreview(fileId){
+    getFilePreview(fileId) {
         return this.bucket.getFilePreview(
+            conf.appwriteBucketId,
+            fileId
+        )
+    }
+    getFileView(fileId) {
+        return this.bucket.getFileView(
             conf.appwriteBucketId,
             fileId
         )

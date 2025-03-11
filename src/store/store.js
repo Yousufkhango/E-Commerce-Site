@@ -1,6 +1,8 @@
 import {configureStore} from '@reduxjs/toolkit';
 import authSlice from './authSlice';
 import sellerAuthSlice from './sellerAuthSlice';
+import draftSlice from '../draft/draftSlice';
+import {cartReducer} from '../components/cart/cartSlice'
 
 
     const saveToLocalStorage = (state) => {
@@ -30,6 +32,8 @@ import sellerAuthSlice from './sellerAuthSlice';
         reducer: {
             auth: authSlice,
             sellerAuth: sellerAuthSlice,
+            draft: draftSlice,
+            cart: cartReducer,
             //TODO: add more slices here for posts
         }
     });
